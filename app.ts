@@ -15,13 +15,13 @@ import adminRoutes from "./src/routes/admin/index.routes";
 app.use('/api/admin', adminRoutes);
 
 // User Routes
-// import usersRoute from "./src/routes/user/index.routes";
-// app.use('/api/user', usersRoute);
+import usersRoute from "./src/routes/user/index.routes";
+app.use('/api/user', usersRoute);
 
 // DATABASE COLLECTION
 app.listen(port, async() => {                                                        // Online Database
     mongoose.connect(dbURL)
-    .then(() => console.log('DB is Connected'))
+    .then(() => console.log('DB is Connected...'))
     .catch(err => console.log(err.message));
     console.log(`Server start at http://localhost:${port}`);
 });

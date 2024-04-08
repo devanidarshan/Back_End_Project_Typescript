@@ -1,4 +1,5 @@
 import express from "express";
+import { adminVerifyToken } from "../../helpers/adminVerifyToken";
 
 import {
   registerAdmin,
@@ -18,15 +19,15 @@ adminRoutes.post("/register-Admin", registerAdmin);
 adminRoutes.post("/login-Admin", loginAdmin);
 
 // GET ALL ADMIN
-adminRoutes.get("/get-All-Admin", getAllAdmin);
+adminRoutes.get("/get-All-Admin", adminVerifyToken, getAllAdmin);
 
 // GET ADMIN
-adminRoutes.get("/get-Admin", getAdmin);
+adminRoutes.get("/get-Admin", adminVerifyToken, getAdmin);
 
 // UPDATE ADMIN
-adminRoutes.put("/update-Admin", updateAdmin);
+adminRoutes.put("/update-Admin", adminVerifyToken, updateAdmin);
 
 // DELETE ADMIN
-adminRoutes.delete("/delete-Admin", deleteAdmin);
+adminRoutes.delete("/delete-Admin", adminVerifyToken, deleteAdmin);
 
 export default adminRoutes;

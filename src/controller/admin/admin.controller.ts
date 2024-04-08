@@ -1,8 +1,8 @@
-import UserServices from "../../services/user.service";
+import UserService from "../../services/user.service";
 import { Request, Response } from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-const userService = new UserServices();
+const userService = new UserService();
 
 declare global{
     namespace Express {
@@ -58,7 +58,7 @@ export const loginAdmin = async(req: Request,res: Response) => {
 // GET ALL ADMIN
 export const getAllAdmin = async(req: Request,res: Response) => {
     try {
-        let admin = await userService.getAllUser({isDelete: false});
+        let admin = await userService.getAllUser({isDelete: false , isAdmin:true});
         // console.log(admin);
         if(!admin){
             return res.status(404).json({ message: `Admin Data Not Found...!`});
