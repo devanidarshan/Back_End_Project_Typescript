@@ -1,5 +1,5 @@
 import express from "express";
-const cartRotes = express.Router();
+const cartRoutes = express.Router();
 import { userVerifyToken } from "../../helpers/userVerifyToken";
 
 import {
@@ -11,18 +11,18 @@ import {
 } from "../../controller/user/cart.controller";
 
 // ADD CART
-cartRotes.post('/add-Cart', userVerifyToken, addToCart);
+cartRoutes.post('/add-Cart', userVerifyToken, addToCart);
 
 // GET ALL CART
-cartRotes.get('/get-All-Cart', userVerifyToken, getAllCart);
+cartRoutes.get('/get-All-Cart', userVerifyToken, getAllCart);
 
 // GET SPECIFIC CART
-cartRotes.get('/get-Cart', userVerifyToken, getCart);
+cartRoutes.get('/get-Cart', userVerifyToken, getCart);
 
 // UPDATE CART
-cartRotes.put('/update-cart', userVerifyToken, updateCart);
+cartRoutes.put('/update-cart', userVerifyToken, updateCart);
 
 // DELETE CART
-cartRotes.delete('/delete-Cart', userVerifyToken, deleteCart);
+cartRoutes.delete('/delete-Cart', userVerifyToken, deleteCart);
 
-export default cartRotes;
+export default cartRoutes;

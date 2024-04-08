@@ -5,7 +5,7 @@ const productService = new ProductService();
 declare global {
     namespace Express {
         interface Request {
-            product?: object;
+            product?: any;
         }
     }
 }

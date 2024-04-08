@@ -1,4 +1,4 @@
-const CartServices = require('../../Services/cart.service');
+import CartServices from "../../services/cart.service";
 import { Request, Response } from "express";
 
 const cartService = new CartServices();
@@ -6,7 +6,7 @@ const cartService = new CartServices();
 declare global {
     namespace Express {
         interface Request {
-            cart?: object;
+            cart?: any;
         }
     }
 }
