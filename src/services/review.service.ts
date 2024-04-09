@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import reviewModel from "../model/review.model";
 
 export default class ReviewService {
@@ -7,8 +8,20 @@ export default class ReviewService {
     }
 
     // GET ALL REVIEW
-    getAllReview = async (body: any) => {
-        return await reviewModel.find(body);
+    getAllReview = async (query: any) => {
+        let product = query.productId && query.productId !== "" ? [
+            {
+                $match: { product: new mongoose.Types.ObjectId(query.productId) }
+            }
+        ] : [];
+        let find = [
+            { $match: { isDelete: false } },
+            ...product,
+
+        ];
+        
+        let result = await reviewModel.aggregate(find);
+        return result;
     }
 
     // GET SPECIFIC REVIEW
