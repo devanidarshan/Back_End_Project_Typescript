@@ -26,13 +26,4 @@ export default class OrderService {
         return await orderModel.findByIdAndUpdate(id, {$set: body }, { new: true });
     }
 
-    // DELETE ORDER
-    deleteOrder = async (id: string) => {
-        return await orderModel.findByIdAndDelete(id , {new: true} , { isDelete: true });
-    }
-
-    // //  UPDATE MANY 
-    // updateMany = async (body:any) => {
-    //     return await orderModel.updateMany(body , {$set: body}, {new: true});
-    // }
 }

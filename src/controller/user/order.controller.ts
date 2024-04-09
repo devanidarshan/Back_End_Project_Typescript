@@ -77,11 +77,11 @@ export const getOrder = async (req: Request,res: Response) => {
 export const deleteOrder = async (req: Request,res: Response) => {
     try {
         let order = await orderService.getOrder({_id: req.query.orderId , isDelete:false});
-        console.log(order);
+        // console.log(order);
         if (!order) {
             res.status(404).json({ message: `Orders Not Found...`});
         }
-        order = await orderService.deleteOrder(req.body.orderId);
+        order = await orderService.updateOrder(order._id, {isDelete: true});
         res.status(200).json({order, message: `Order Deleted Successfully...`});
         // console.log(order);
     } catch (error) {
