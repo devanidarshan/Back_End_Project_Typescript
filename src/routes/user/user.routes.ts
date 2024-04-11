@@ -8,6 +8,7 @@ import {
   getUser,
   updateUser,
   deleteUser,
+  updatePassword
 } from "../../controller/user/user.controller";
 
 const userRoutes = express.Router();
@@ -29,5 +30,8 @@ userRoutes.put("/update-User", userVerifyToken , updateUser);
 
 // DELETE User
 userRoutes.delete("/delete-User", userVerifyToken , deleteUser);
+
+// UPDATE PASSWORD
+userRoutes.put("/update-Password", userVerifyToken , updatePassword);
 
 export default userRoutes;

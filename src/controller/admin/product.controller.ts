@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import ProductService from "../../services/product.service";
 const productService = new ProductService();
-import  ReviewServieces  from "../../services/review.service";
-const reviewServiece = new ReviewServieces();
+import  ReviewServices  from "../../services/review.service";
+const reviewService = new ReviewServices();
 
 declare global {
     namespace Express {
@@ -42,7 +42,7 @@ export const getAllProduct = async (req: Request,res: Response) => {
 export const getProduct = async (req: Request,res: Response) => {
     try {
         let product = await productService.getProductById(req.query.productId);
-        let review = await reviewServiece.getAllReview(req.query);
+        let review = await reviewService.getAllReview(req.query);
         // console.log(review);
         let totalRating = review.reduce((total:number, item:any) => total + item.rating, 0);
         let avgRating = totalRating / review.length;

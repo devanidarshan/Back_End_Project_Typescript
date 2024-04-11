@@ -7,7 +7,7 @@ const userService = new UserService();
 declare global{
     namespace Express {
         interface Request {
-            admin?: object;
+            admin?: any;
         }
     }
 }
@@ -114,3 +114,41 @@ export const deleteAdmin = async(req: Request,res: Response) => {
         res.status(500).json({ message: `Internal Server Error..${console.error()}`});
     }
 };
+
+// UPDATE PASSWORD
+export const updatePassword = async (req: Request,res: Response) => {
+    try {
+      let admin = await userService.getUserById(req.admin._id);
+      if (!admin) {
+        return res.json({ message: `User Not Found...` });
+      }
+    //   console.log(req.body.oldPassword)
+      let comparePassword = await bcrypt.compare(
+        req.body.oldPassword ,
+        admin.password as string
+      );
+      if (!comparePassword) {
+        return res.json({ message: `Password is not Match...` });
+      }
+      if (req.body.newPassword === req.body.oldPassword) {
+        return res.json({
+          message: `Old Password And New Password Are Same...`,
+        });
+      }
+      if (req.body.newPassword !== req.body.confirmPassword) {
+        return res.json({
+          message: `New Password And Confirm Password is not Same...`,
+        });
+      }
+      let hashPassword = await bcrypt.hash(req.body.newPassword, 10);
+      admin = await userService.updateUser((req.admin as any )._id, {
+        password: hashPassword,
+      });
+      res.status(200).json({ admin: admin, message: "Password changed successfully..." });
+    } catch (error) {
+      console.log(error);
+      res.status(500)
+        .json({ message: `Internal Server Error..${console.error()}` });
+    }
+  };
+  
