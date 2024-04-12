@@ -27,7 +27,7 @@ export const registerAdmin = async(req: Request,res: Response) => {
             password: hashPassword,
             isAdmin: true
         });
-        res.status(201).json({admin: admin, message: `New Admin Is Added SuccesFully...`});
+        res.status(201).json({admin: admin, message: `Admin Is Added SuccesFully...`});
     } catch (error) {
         console.log(error);
         res.status(500).json({ message: `Internal Server Error..${console.error()}`});
