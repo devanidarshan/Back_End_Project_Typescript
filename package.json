@@ -1,7 +1,7 @@
 {
   "name": "project-typescript",
   "version": "1.0.0",
-  "main": "src/app.ts",
+  "main": "app.ts",
   "scripts": {
     "start": "node src/app.ts",
     "dev": "nodemon src/app.ts"
